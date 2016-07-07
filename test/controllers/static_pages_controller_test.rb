@@ -10,7 +10,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
     get static_pages_home_url
     assert_response :success
-    assert_select "title", "Home | Do What You Gotta Do - A Todo App"
+    assert_select "title", "Do What You Gotta Do - A Todo App"
   end
 
   test "should get about" do
