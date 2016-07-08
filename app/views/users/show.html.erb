@@ -4,30 +4,43 @@
   <%= @user.name %>
 </h1>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <h2>Add a task:</h2>
-    <%= form_for([@user, @user.tasks.build]) do |f| %>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">What's New To Do</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <h2>Add a task:</h2>
+        <%= form_for([@user, Task.new]) do |f| %>
+          <p>
+            <%= f.label :Task %><br>
+            <%= f.text_field :taskText %>
+          </p>
+          <p>
+            <%= f.submit "Submit", class: "task-submit btn btn-primary" %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+
+    <h2>What You Gotta Do</h2>
+
+    <% if @user.tasks.exists? %>
+    <% @user.tasks.each do |task| %>
       <p>
-        <%= f.label :Task %><br>
-        <%= f.text_field :taskText %>
+        <strong>Task:</strong>
+        <%= task.taskText %>
+
+        <%= link_to 'Destroy Task', [task.user, task],
+                     method: :delete,
+                     class: "btn btn-primary btn-xs destroy-button",
+                     data: { confirm: 'Are you sure?' } %>
       </p>
-      <p>
-        <%= f.submit "Submit", class: "btn btn-primary" %>
-      </p>
+    <% end %>
+
+  <% else %>
+    Do you need to start something? :D
     <% end %>
   </div>
 </div>
-
-<h2>What You Gotta Do</h2>
-<% @user.tasks.each do |task| %>
-  <p>
-    <strong>Task:</strong>
-    <%= task.taskText %>
-  </p>
-  <p>
-    <%= link_to 'Destroy Task', [task.user, task],
-                 method: :delete,
-                 data: { confirm: 'Did you actually do this?' } %>
-  </p>
-<% end %>

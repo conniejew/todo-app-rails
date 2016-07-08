@@ -121,3 +121,13 @@ input {
     color: $state-danger-text;
   }
 }
+
+/* buttons */
+
+.task-submit {
+  max-width: 100px;
+}
+
+.destroy-button {
+  float: right;
+}
