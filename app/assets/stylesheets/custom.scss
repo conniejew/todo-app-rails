@@ -3,10 +3,10 @@
 
 body {
   padding-top: 65px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.home, .contact, .about {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+.home, .contact, .about, .login, .signup {
   letter-spacing: -1px;
   font-weight: bold;
 }
