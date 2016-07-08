@@ -3,3 +3,31 @@
   <%= gravatar_for @user %>
   <%= @user.name %>
 </h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h2>Add a task:</h2>
+    <%= form_for([@user, @user.tasks.build]) do |f| %>
+      <p>
+        <%= f.label :Task %><br>
+        <%= f.text_field :taskText %>
+      </p>
+      <p>
+        <%= f.submit "Submit", class: "btn btn-primary" %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<h2>What You Gotta Do</h2>
+<% @user.tasks.each do |task| %>
+  <p>
+    <strong>Task:</strong>
+    <%= task.taskText %>
+  </p>
+  <p>
+    <%= link_to 'Destroy Task', [task.user, task],
+                 method: :delete,
+                 data: { confirm: 'Did you actually do this?' } %>
+  </p>
+<% end %>
